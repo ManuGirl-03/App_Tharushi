@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechCare Services - System Design Canvas</title>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header p {
+            margin: 10px 0 0 0;
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .content {
+            padding: 30px;
+        }
+
+        .diagram-section {
+            margin: 40px 0;
+            padding: 30px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border-left: 5px solid #4CAF50;
+        }
+
+        .diagram-title {
+            font-size: 1.8em;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #4CAF50;
+            padding-bottom: 10px;
+        }
+
+        .diagram-description {
+            background: #e8f5e8;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border: 1px solid #4CAF50;
+        }
+
+        .diagram-description h4 {
+            margin-top: 0;
+            color: #2c3e50;
+        }
+
+        .mermaid {
+            text-align: center;
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .nav-buttons {
+            position: fixed;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .nav-buttons button {
+            display: block;
+            width: 100%;
+            padding: 10px 15px;
+            margin: 5px 0;
+            background: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .nav-buttons button:hover {
+            background: #45a049;
+        }
+
+        .footer {
+            background: #2c3e50;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        @media print {
+            .nav-buttons { display: none; }
+            body { background: white; }
+            .container { box-shadow: none; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🔧 TechCare Services</h1>
+            <p>System Design & Database Architecture Documentation</p>
+            <p><small>Mobile Application for Electronic Device Repair Services</small></p>
+        </div>
+
+        <div class="content">
+            <!-- Use Case Diagram -->
+            <div id="usecase" class="diagram-section">
+                <h2 class="diagram-title">📋 Use Case Diagram</h2>
+                <div class="diagram-description">
+                    <h4>Purpose & Design Decisions:</h4>
+                    <ul>
+                        <li><strong>Customer Actor:</strong> Primary user who books services, manages profile, and tracks repairs</li>
+                        <li><strong>Admin Actor:</strong> Manages services, bookings, and system maintenance</li>
+                        <li><strong>System Actor:</strong> Represents automated processes like notifications and updates</li>
+                        <li><strong>Relationships:</strong> Include/extend relationships show dependencies between use cases</li>
+                    </ul>
+                </div>
+                <div class="mermaid">
+graph TB
+    subgraph "TechCare Services System"
+        subgraph "Customer Functions"
+            UC1[Register Account]
+            UC2[Login]
+            UC3[Browse Services]
+            UC4[Submit Repair Request]
+            UC5[Schedule Pickup/Dropoff]
+            UC6[Track Booking Status]
+            UC7[Manage Profile]
+            UC8[View Service History]
+            UC9[Change Password]
+            UC10[View FAQs]
+            UC11[Contact Support]
+            UC12[Cancel Booking]
+        end
+
+        subgraph "Admin Functions"
+            UC13[Admin Login]
+            UC14[Manage Services]
+            UC15[View All Bookings]
+            UC16[Update Booking Status]
+            UC17[Manage Customer Accounts]
+            UC18[Generate Reports]
+        end
+
+        subgraph "System Functions"
+            UC19[Send Notifications]
+            UC20[Update Status Automatically]
+            UC21[Backup Data]
+        end
+    end
+
+    Customer((Customer))
+    Admin((Admin))
+    System((System))
+
+    Customer --> UC1
+    Customer --> UC2
+    Customer --> UC3
+    Customer --> UC4
+    Customer --> UC5
+    Customer --> UC6
+    Customer --> UC7
+    Customer --> UC8
+    Customer --> UC9
+    Customer --> UC10
+    Customer --> UC11
+    Customer --> UC12
+
+    Admin --> UC13
+    Admin --> UC14
+    Admin --> UC15
+    Admin --> UC16
+    Admin --> UC17
+    Admin --> UC18
+
+    System --> UC19
+    System --> UC20
+    System --> UC21
+
+    UC4 -.->|includes| UC2
+    UC5 -.->|includes| UC4
+    UC6 -.->|includes| UC2
+    UC7 -.->|includes| UC2
+    UC8 -.->|includes| UC2
+    UC12 -.->|includes| UC6
+    UC16 -.->|extends| UC19
+                </div>
+            </div>
+
+            <!-- Class Diagram -->
+            <div id="class" class="diagram-section">
+                <h2 class="diagram-title">🏗️ Class Diagram</h2>
+                <div class="diagram-description">
+                    <h4>Purpose & Design Decisions:</h4>
+                    <ul>
+                        <li><strong>Inheritance:</strong> User base class with Customer and Admin subclasses</li>
+                        <li><strong>Composition:</strong> Customer has multiple bookings and devices</li>
+                        <li><strong>Association:</strong> Services are used in bookings, devices are repaired in bookings</li>
+                        <li><strong>Database Helper:</strong> Centralized data access layer for SQLite operations</li>
+                    </ul>
+                </div>
+                <div class="mermaid">
+classDiagram
+    class User {
+        +int id
+        +String email
+        +String phone
+        +String password
+        +String name
+        +Date createdAt
+        +boolean isActive
+        +login(email, password) boolean
+        +logout() void
+        +updateProfile(name, phone) boolean
+        +changePassword(oldPass, newPass) boolean
+    }
+
+    class Customer {
+        +String address
+        +List~Booking~ bookings
+        +List~Device~ devices
+        +registerCustomer() boolean
+        +submitBooking(service, device, description) Booking
+        +getBookingHistory() List~Booking~
+        +cancelBooking(bookingId) boolean
+        +updateAddress(address) boolean
+    }
+
+    class Admin {
+        +String department
+        +String role
+        +manageServices() void
+        +viewAllBookings() List~Booking~
+        +updateBookingStatus(bookingId, status) boolean
+        +generateReports() void
+        +manageCustomers() void
+    }
+
+    class Service {
+        +int serviceId
+        +String serviceName
+        +String description
+        +double price
+        +String category
+        +int estimatedDays
+        +boolean isActive
+        +createService() boolean
+        +updateService() boolean
+        +deleteService() boolean
+        +getServicesByCategory(category) List~Service~
+    }
+
+    class Device {
+        +int deviceId
+        +String deviceType
+        +String brand
+        +String model
+        +int customerId
+        +addDevice() boolean
+        +updateDevice() boolean
+        +deleteDevice() boolean
+        +getDevicesByCustomer(customerId) List~Device~
+    }
+
+    class Booking {
+        +int bookingId
+        +int customerId
+        +int serviceId
+        +int deviceId
+        +String issueDescription
+        +String serviceType
+        +String status
+        +double totalCost
+        +Date requestDate
+        +Date scheduledDate
+        +Date completionDate
+        +String technicianNotes
+        +createBooking() boolean
+        +updateStatus(status) boolean
+        +calculateCost() double
+        +scheduleService(date) boolean
+        +addTechnicianNotes(notes) boolean
+    }
+
+    class DatabaseHelper {
+        -SQLiteDatabase db
+        +createTables() void
+        +insertUser(user) long
+        +insertBooking(booking) long
+        +insertService(service) long
+        +updateBookingStatus(id, status) boolean
+        +getBookingsByCustomer(customerId) List~Booking~
+        +getAllServices() List~Service~
+        +getUserByEmail(email) User
+        +closeDatabase() void
+    }
+
+    User <|-- Customer
+    User <|-- Admin
+    Customer "1" --> "*" Booking : creates
+    Customer "1" --> "*" Device : owns
+    Service "1" --> "*" Booking : used_in
+    Device "1" --> "*" Booking : repaired_in
+    DatabaseHelper --> User : manages
+    DatabaseHelper --> Booking : manages
+    DatabaseHelper --> Service : manages
+    DatabaseHelper --> Device : manages
+                </div>
+            </div>
+
+            <!-- Activity Diagram -->
+            <div id="activity" class="diagram-section">
+                <h2 class="diagram-title">🔄 Activity Diagram - Customer Booking Process</h2>
+                <div class="diagram-description">
+                    <h4>Purpose & Design Decisions:</h4>
+                    <ul>
+                        <li><strong>Sequential Flow:</strong> User authentication required before booking</li>
+                        <li><strong>Decision Points:</strong> Service type (pickup vs drop-off) affects workflow</li>
+                        <li><strong>Parallel Activities:</strong> Photo upload is optional and can be skipped</li>
+                        <li><strong>Error Handling:</strong> Validation failures return to appropriate steps</li>
+                    </ul>
+                </div>
+                <div class="mermaid">
+graph TD
+    Start([Start]) --> CheckLogin{User Logged In?}
+    CheckLogin -->|No| LoginPage[Navigate to Login]
+    LoginPage --> Login[Enter Credentials]
+    Login --> ValidateLogin{Valid Credentials?}
+    ValidateLogin -->|No| LoginError[Show Error Message]
+    LoginError --> Login
+    ValidateLogin -->|Yes| Dashboard[Navigate to Dashboard]
+    CheckLogin -->|Yes| Dashboard
+
+    Dashboard --> BrowseServices[Browse Available Services]
+    BrowseServices --> SelectService[Select Service]
+    SelectService --> SelectDevice[Select/Add Device]
+    SelectDevice --> EnterDescription[Enter Issue Description]
+
+    EnterDescription --> UploadPhotos{Upload Photos?}
+    UploadPhotos -->|Yes| PhotoUpload[Upload Photo]
+    UploadPhotos -->|No| SelectServiceType[Select Service Type]
+    PhotoUpload --> SelectServiceType
+
+    SelectServiceType --> ServiceTypeDecision{Service Type?}
+    ServiceTypeDecision -->|Home Pickup| SchedulePickup[Schedule Pickup Time]
+    ServiceTypeDecision -->|Drop-off| ViewCenters[View Service Centers]
+
+    SchedulePickup --> ConfirmBooking[Review Booking Details]
+    ViewCenters --> SelectCenter[Select Service Center]
+    SelectCenter --> ConfirmBooking
+
+    ConfirmBooking --> SubmitBooking[Submit Booking Request]
+    SubmitBooking --> ValidateData{Data Valid?}
+    ValidateData -->|No| ValidationError[Show Validation Error]
+    ValidationError --> EnterDescription
+    ValidateData -->|Yes| SaveBooking[Save to Database]
+
+    SaveBooking --> GenerateBookingId[Generate Booking ID]
+    GenerateBookingId --> SendNotification[Send Confirmation SMS/Email]
+    SendNotification --> ShowSuccess[Show Success Message]
+    ShowSuccess --> End([End])
+                </div>
+            </div>
+
+            <!-- ER Diagram -->
+            <div id="er" class="diagram-section">
+                <h2 class="diagram-title">🗃️ Entity-Relationship (ER) Diagram</h2>
+                <div class="diagram-description">
+                    <h4>Purpose & Design Decisions:</h4>
+                    <ul>
+                        <li><strong>Entity Relationships:</strong> One-to-many between Customer-Bookings and Customer-Devices</li>
+                        <li><strong>Primary Keys:</strong> Auto-incrementing integers for all entities</li>
+                        <li><strong>Foreign Keys:</strong> Maintain referential integrity between related tables</li>
+                        <li><strong>Attributes:</strong> Essential data fields with appropriate data types</li>
+                    </ul>
+                </div>
+                <div class="mermaid">
+erDiagram
+    USER {
+        int user_id PK
+        string email UK
+        string phone UK
+        string password
+        string name
+        string user_type
+        datetime created_at
+        boolean is_active
+    }
+
+    CUSTOMER {
+        int customer_id PK
+        int user_id FK
+        string address
+        string preferred_contact
+    }
+
+    ADMIN {
+        int admin_id PK
+        int user_id FK
+        string department
+        string role
+        datetime last_login
+    }
+
+    SERVICE {
+        int service_id PK
+        string service_name
+        string description
+        decimal price
+        string category
+        int estimated_days
+        boolean is_active
+        datetime created_at
+        datetime updated_at
+    }
+
+    DEVICE {
+        int device_id PK
+        int customer_id FK
+        string device_type
+        string brand
+        string model
+        string serial_number
+        datetime added_date
+    }
+
+    BOOKING {
+        int booking_id PK
+        int customer_id FK
+        int service_id FK
+        int device_id FK
+        string issue_description
+        string service_type
+        string status
+        decimal total_cost
+        datetime request_date
+        datetime scheduled_date
+        datetime completion_date
+        string technician_notes
+        string payment_status
+    }
+
+    FAQ {
+        int faq_id PK
+        string question
+        string answer
+        string category
+        boolean is_active
+        datetime created_at
+    }
+
+    CONTACT_SUPPORT {
+        int contact_id PK
+        int customer_id FK
+        string subject
+        string message
+        string status
+        datetime created_at
+        datetime resolved_at
+        string admin_response
+    }
+
+    USER ||--|| CUSTOMER : "is_a"
+    USER ||--|| ADMIN : "is_a"
+    CUSTOMER ||--o{ DEVICE : "owns"
+    CUSTOMER ||--o{ BOOKING : "creates"
+    SERVICE ||--o{ BOOKING : "used_in"
+    DEVICE ||--o{ BOOKING : "repaired"
+    CUSTOMER ||--o{ CONTACT_SUPPORT : "submits"
+                </div>
+            </div>
+
+            <!-- System Architecture -->
+            <div id="architecture" class="diagram-section">
+                <h2 class="diagram-title">🏛️ System Architecture Overview</h2>
+                <div class="diagram-description">
+                    <h4>Purpose & Design Decisions:</h4>
+                    <ul>
+                        <li><strong>Layered Architecture:</strong> Clear separation of presentation, business logic, and data layers</li>
+                        <li><strong>Presentation Layer:</strong> Android Activities and Fragments for user interface</li>
+                        <li><strong>Business Logic:</strong> Service classes handle core application logic</li>
+                        <li><strong>Data Access:</strong> DAO pattern with SQLite database for data persistence</li>
+                    </ul>
+                </div>
+                <div class="mermaid">
+graph TB
+    subgraph "Presentation Layer"
+        UI1[Login Activity]
+        UI2[Dashboard Activity]
+        UI3[Booking Activity]
+        UI4[Profile Activity]
+        UI5[Admin Dashboard]
+    end
+
+    subgraph "Business Logic Layer"
+        BL1[Authentication Service]
+        BL2[Booking Service]
+        BL3[User Service]
+        BL4[Notification Service]
+    end
+
+    subgraph "Data Access Layer"
+        DAL1[Database Helper]
+        DAL2[User DAO]
+        DAL3[Booking DAO]
+        DAL4[Service DAO]
+    end
+
+    subgraph "Data Storage Layer"
+        DB[(SQLite Database)]
+    end
+
+    UI1 --> BL1
+    UI2 --> BL2
+    UI3 --> BL2
+    UI4 --> BL3
+    UI5 --> BL2
+
+    BL1 --> DAL2
+    BL2 --> DAL3
+    BL3 --> DAL2
+    BL2 --> DAL4
+
+    DAL1 --> DB
+    DAL2 --> DB
+    DAL3 --> DB
+    DAL4 --> DB
+                </div>
+            </div>
+
+            <!-- Database Schema -->
+            <div id="schema" class="diagram-section">
+                <h2 class="diagram-title">🗄️ Normalized Database Schema (3NF)</h2>
+                <div class="diagram-description">
+                    <h4>Normalization Rules Applied:</h4>
+                    <ul>
+                        <li><strong>First Normal Form (1NF):</strong> All attributes contain atomic values</li>
+                        <li><strong>Second Normal Form (2NF):</strong> All non-key attributes depend on the entire primary key</li>
+                        <li><strong>Third Normal Form (3NF):</strong> No transitive dependencies between non-key attributes</li>
+                        <li><strong>Benefits:</strong> Eliminates redundancy, ensures data integrity, reduces storage space</li>
+                    </ul>
+
+                    <h4>Key Tables:</h4>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-top: 15px;">
+                        <div style="background: white; padding: 15px; border-radius: 5px; border: 1px solid #ddd;">
+                            <h5>👤 Users</h5>
+                            <p>Base authentication table with user credentials and basic info</p>
+                        </div>
+                        <div style="background: white; padding: 15px; border-radius: 5px; border: 1px solid #ddd;">
+                            <h5>🛒 Bookings</h5>
+                            <p>Core business entity managing repair requests and their lifecycle</p>
+                        </div>
+                        <div style="background: white; padding: 15px; border-radius: 5px; border: 1px solid #ddd;">
+                            <h5>🔧 Services</h5>
+                            <p>Catalog of repair services with pricing and descriptions</p>
+                        </div>
+                        <div style="background: white; padding: 15px; border-radius: 5px; border: 1px solid #ddd;">
+                            <h5>📱 Devices</h5>
+                            <p>Customer device inventory for repair tracking</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>&copy; 2024 TechCare Services System Design Documentation</p>
+            <p>Created for Mobile Application Development Assignment</p>
+        </div>
+    </div>
+
+    <div class="nav-buttons">
+        <h4 style="margin-top: 0; color: #333;">Quick Navigation</h4>
+        <button onclick="document.getElementById('usecase').scrollIntoView({behavior: 'smooth'})">Use Cases</button>
+        <button onclick="document.getElementById('class').scrollIntoView({behavior: 'smooth'})">Classes</button>
+        <button onclick="document.getElementById('activity').scrollIntoView({behavior: 'smooth'})">Activities</button>
+        <button onclick="document.getElementById('er').scrollIntoView({behavior: 'smooth'})">ER Diagram</button>
+        <button onclick="document.getElementById('architecture').scrollIntoView({behavior: 'smooth'})">Architecture</button>
+        <button onclick="document.getElementById('schema').scrollIntoView({behavior: 'smooth'})">Schema</button>
+    </div>
+
+    <script>
+        // Initialize Mermaid
+        mermaid.initialize({
+            startOnLoad: true,
+            theme: 'default',
+            flowchart: {
+                useMaxWidth: true,
+                htmlLabels: true
+            },
+            er: {
+                entityPadding: 20,
+                fontSize: 12
+            },
+            class: {
+                fontSize: 12
+            }
+        });
+
+        // Add smooth scrolling for better UX
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Print functionality
+        function printDiagrams() {
+            window.print();
+        }
+    </script>
+</body>
+</html>
+
