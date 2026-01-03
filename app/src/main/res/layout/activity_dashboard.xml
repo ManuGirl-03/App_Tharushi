@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#f5f5f5">
+
+    <!-- Header -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="#2196F3"
+        android:padding="16dp"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="TechCare Dashboard"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/white" />
+
+        <Button
+            android:id="@+id/btnLogout"
+            android:layout_width="wrap_content"
+            android:layout_height="36dp"
+            android:text="Logout"
+            android:textSize="12sp"
+            android:backgroundTint="#FF5722"
+            android:textColor="@android:color/white" />
+
+    </LinearLayout>
+
+    <!-- Welcome Section -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="24dp"
+        android:background="@android:color/white"
+        android:layout_margin="16dp"
+        android:elevation="4dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Welcome to TechCare Services!"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="#333333"
+            android:layout_marginBottom="8dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Your trusted partner for electronic device repair and servicing"
+            android:textSize="16sp"
+            android:textColor="#666666"
+            android:layout_marginBottom="16dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Quick Actions:"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="#333333"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Quick Action Buttons -->
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:columnCount="2"
+            android:rowCount="3">
+
+            <Button
+                android:id="@+id/btnBrowseServices"
+                android:layout_width="0dp"
+                android:layout_height="80dp"
+                android:layout_columnWeight="1"
+                android:layout_margin="8dp"
+                android:text="Browse\nServices"
+                android:textSize="14sp"
+                android:backgroundTint="#4CAF50"
+                android:drawableTop="@android:drawable/ic_menu_search" />
+
+            <Button
+                android:id="@+id/btnNewRequest"
+                android:layout_width="0dp"
+                android:layout_height="80dp"
+                android:layout_columnWeight="1"
+                android:layout_margin="8dp"
+                android:text="New Repair\nRequest"
+                android:textSize="14sp"
+                android:backgroundTint="#FF9800"
+                android:drawableTop="@android:drawable/ic_input_add" />
+
+            <Button
+                android:id="@+id/btnMyBookings"
+                android:layout_width="0dp"
+                android:layout_height="80dp"
+                android:layout_columnWeight="1"
+                android:layout_margin="8dp"
+                android:text="My\nBookings"
+                android:textSize="14sp"
+                android:backgroundTint="#9C27B0"
+                android:drawableTop="@android:drawable/ic_menu_agenda" />
+
+            <Button
+                android:id="@+id/btnProfile"
+                android:layout_width="0dp"
+                android:layout_height="80dp"
+                android:layout_columnWeight="1"
+                android:layout_margin="8dp"
+                android:text="My\nProfile"
+                android:textSize="14sp"
+                android:backgroundTint="#607D8B"
+                android:drawableTop="@android:drawable/ic_menu_manage" />
+
+            <Button
+                android:id="@+id/btnSupport"
+                android:layout_width="0dp"
+                android:layout_height="80dp"
+                android:layout_columnWeight="1"
+                android:layout_margin="8dp"
+                android:text="Support\n&amp; Tips"
+                android:textSize="14sp"
+                android:backgroundTint="#FF5722"
+                android:drawableTop="@android:drawable/ic_menu_help" />
+
+            <Button
+                android:id="@+id/btnEmergency"
+                android:layout_width="0dp"
+                android:layout_height="80dp"
+                android:layout_columnWeight="1"
+                android:layout_margin="8dp"
+                android:text="Emergency\nSupport"
+                android:textSize="14sp"
+                android:backgroundTint="#F44336"
+                android:drawableTop="@android:drawable/ic_menu_call" />
+
+        </GridLayout>
+
+    </LinearLayout>
+
+    <!-- Service Categories -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Our Services"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="#333333"
+        android:layout_margin="16dp" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="📱 Smartphones &amp; Tablets"
+                android:textSize="16sp"
+                android:textColor="#333333"
+                android:background="@android:color/white"
+                android:padding="16dp"
+                android:layout_marginBottom="8dp"
+                android:elevation="2dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="💻 Laptops &amp; Computers"
+                android:textSize="16sp"
+                android:textColor="#333333"
+                android:background="@android:color/white"
+                android:padding="16dp"
+                android:layout_marginBottom="8dp"
+                android:elevation="2dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="📺 Televisions"
+                android:textSize="16sp"
+                android:textColor="#333333"
+                android:background="@android:color/white"
+                android:padding="16dp"
+                android:layout_marginBottom="8dp"
+                android:elevation="2dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="❄️ Air Conditioners"
+                android:textSize="16sp"
+                android:textColor="#333333"
+                android:background="@android:color/white"
+                android:padding="16dp"
+                android:layout_marginBottom="8dp"
+                android:elevation="2dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="🧊 Refrigerators"
+                android:textSize="16sp"
+                android:textColor="#333333"
+                android:background="@android:color/white"
+                android:padding="16dp"
+                android:layout_marginBottom="8dp"
+                android:elevation="2dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="👔 Washing Machines"
+                android:textSize="16sp"
+                android:textColor="#333333"
+                android:background="@android:color/white"
+                android:padding="16dp"
+                android:layout_marginBottom="8dp"
+                android:elevation="2dp" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>
